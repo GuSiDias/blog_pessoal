@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-
 import java.util.List;
 
 @Entity
@@ -33,6 +32,17 @@ public class usuario {
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "usuario",cascade = CascadeType.REMOVE)
     @JsonIgnoreProperties("usuario")
     private List<postagem> postagem;
+
+    public usuario(Long id, String nome, String usuario, String senha, String foto) {
+        this.id = id;
+        this.nome = nome;
+        this.usuario = usuario;
+        this.senha = senha;
+        this.foto = foto;
+        this.postagem = postagem;
+    }
+
+    public usuario() {}
 
     public Long getId() {
         return id;
